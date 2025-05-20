@@ -8,7 +8,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
-  title: "Kỷ Yếu Lớp 9A1 - Một Thời Để Nhớ",
+  title: "Kỷ Yếu Lớp 9A1 - THCS Nguyễn Văn Trỗi",
   description: "Website lưu giữ kỷ niệm của lớp 9A1, nơi chia sẻ hình ảnh, video, lời nhắn và kỷ niệm đáng nhớ",
   generator: 'v0.dev',
   icons: {
