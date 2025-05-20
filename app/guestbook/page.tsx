@@ -34,13 +34,17 @@ export default function GuestbookPage() {
         id: doc.id,
         name: doc.data().name,
         message: doc.data().message,
-        date: doc.data().createdAt?.toDate().toLocaleString("vi-VN", {
-          hour: "2-digit",
-          minute: "2-digit",
-          day: "2-digit",
-          month: "2-digit",
-          year: "numeric",
-        }) || "",
+        date:
+          doc
+            .data()
+            .createdAt?.toDate()
+            .toLocaleString("vi-VN", {
+              hour: "2-digit",
+              minute: "2-digit",
+              day: "2-digit",
+              month: "2-digit",
+              year: "numeric",
+            }) || "",
       }))
       setEntries(fetched)
     })
@@ -53,7 +57,6 @@ export default function GuestbookPage() {
     if (name.trim() === "" || message.trim() === "") return
 
     try {
-      setSubmitted(true)
       await addDoc(collection(db, "guestbook"), {
         name,
         message,
@@ -61,6 +64,7 @@ export default function GuestbookPage() {
       })
       setName("")
       setMessage("")
+      setSubmitted(true)
       setTimeout(() => setSubmitted(false), 3000)
     } catch (err) {
       console.error("Error submitting entry:", err)
@@ -126,12 +130,7 @@ export default function GuestbookPage() {
               <div className="text-right">
                 <button
                   type="submit"
-                  disabled={submitted}
-                  className={`inline-flex items-center gap-2 px-6 py-3 rounded-full text-lg font-medium transition-all duration-300 shadow-lg ${
-                    submitted
-                      ? "bg-gray-400 cursor-not-allowed"
-                      : "bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white"
-                  }`}
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-full text-lg font-medium hover:from-purple-700 hover:to-pink-700 transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
                   Gửi lời nhắn
                   <Send size={18} />
